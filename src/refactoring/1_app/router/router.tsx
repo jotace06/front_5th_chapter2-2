@@ -1,8 +1,8 @@
 import { createHashRouter } from "react-router-dom";
 
-import { RootLayout } from "../../_widgets/layouts";
-import { CartPage } from "../../_pages/cart";
-import { AdminPage } from "../../_pages/admin";
+import { RootLayout } from "../../3_widgets/layouts";
+import { CartPage } from "../../2_pages/cart";
+import { AdminPage } from "../../2_pages/admin";
 
 export const router = createHashRouter([
   {
