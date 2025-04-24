@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Product, Discount } from "../../../6_shared/types/domain";
+import { Product, Discount } from "../../../6_shared/types";
 import * as ProductModel from "../../../5_entities/product/lib";
 
 export const useProductEditor = (

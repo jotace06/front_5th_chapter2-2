@@ -2,8 +2,9 @@ import { useAtom } from "jotai";
 
 import { Product, ProductFormData, Discount } from "../../../6_shared/types";
 import { productsAtom } from "../../../5_entities/product/model/atoms";
-import * as ProductModel from "../../../5_entities/product/lib/actions";
+import * as ProductModel from "../../../5_entities/product/lib";
 
+// 관리자 페이지 - 상품관리에 필요한 기능들
 export const useProducts = () => {
   const [products, setProducts] = useAtom(productsAtom);
 
@@ -44,7 +45,6 @@ export const useProducts = () => {
 
   return {
     products,
-    setProducts,
     updateProduct,
     addProduct,
     addDiscount,

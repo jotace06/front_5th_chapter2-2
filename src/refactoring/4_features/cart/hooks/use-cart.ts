@@ -4,6 +4,7 @@ import { cartAtom, cartTotalAtom } from "../../../5_entities/cart/model";
 import * as CartModel from "../../../5_entities/cart/lib";
 import { Product } from "../../../6_shared/types";
 
+// 장바구니 페이지 - 장바구니 내역
 export const useCart = () => {
   const [cart, setCart] = useAtom(cartAtom);
   const cartTotal = useAtomValue(cartTotalAtom);
@@ -38,7 +39,7 @@ export const useCart = () => {
   const updateQuantity = (product: Product, newQuantity: number) => {
     const existingItem = CartModel.findCartItem(cart, product.id);
 
-    // 존재하지 않는 상품이면 원래 상태 반환
+    // 존재하지 않는 상품이면 early return
     if (!existingItem) return;
 
     // 수량이 0 이하면 상품 제거
@@ -48,7 +49,7 @@ export const useCart = () => {
       return;
     }
 
-    // 재고 초과면 재고만큼 줄임
+    // 수량 업데이트
     const updatedCart = CartModel.updateCartItemQuantity(
       cart,
       product.id,
