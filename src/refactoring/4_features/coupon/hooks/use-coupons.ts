@@ -1,18 +1,17 @@
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 
-import {
-  selectedCouponAtom,
-  couponsAtom,
-} from "../../../5_entities/coupon/model/atoms";
+import { couponsAtom } from "../../../5_entities/coupon/model/atoms";
+import { Coupon } from "../../../6_shared/types";
 
 export const useCoupons = () => {
-  const [selectedCoupon, setSelectedCoupon] = useAtom(selectedCouponAtom);
+  const [coupons, setCoupons] = useAtom(couponsAtom);
 
-  const coupons = useAtomValue(couponsAtom);
+  const addCoupon = (coupon: Coupon) => {
+    setCoupons([...coupons, coupon]);
+  };
 
   return {
     coupons,
-    selectedCoupon,
-    applyCoupon: setSelectedCoupon,
+    addCoupon,
   };
 };

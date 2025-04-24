@@ -13,7 +13,12 @@ export const calculateCouponAppliedTotal = (
 
   switch (coupon.discountType) {
     case "amount": {
-      couponAppliedCartTotal.totalAfterDiscount -= coupon.discountValue;
+      const discountValue = Math.min(
+        coupon.discountValue,
+        couponAppliedCartTotal.totalBeforeDiscount
+      );
+
+      couponAppliedCartTotal.totalAfterDiscount -= discountValue;
       couponAppliedCartTotal.totalDiscount =
         couponAppliedCartTotal.totalBeforeDiscount -
         couponAppliedCartTotal.totalAfterDiscount;

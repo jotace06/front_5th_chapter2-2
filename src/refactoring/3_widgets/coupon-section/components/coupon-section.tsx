@@ -1,8 +1,9 @@
-import { useCoupons } from "../../../4_features/coupon/hooks/use-coupons";
+import { useCoupon, useCoupons } from "../../../4_features/coupon/hooks";
 import { CouponSelect } from "./coupon-select";
 
 export const CouponSection = () => {
-  const { coupons, selectedCoupon, applyCoupon } = useCoupons();
+  const { coupons } = useCoupons();
+  const { selectedCoupon, applyCoupon } = useCoupon();
 
   return (
     <div className="mt-6 bg-white p-4 rounded shadow">
