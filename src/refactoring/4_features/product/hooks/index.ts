@@ -1,2 +1,2 @@
 export * from "./use-products";
-export * from "./use-products-with-cart";
+export * from "./use-product";

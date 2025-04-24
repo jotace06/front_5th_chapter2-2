@@ -1,9 +1,4 @@
-import {
-  CartItem,
-  CartTotal,
-  Discount,
-  Coupon,
-} from "../../../6_shared/types/domain";
+import { CartItem, CartTotal, Discount } from "../../../6_shared/types/domain";
 
 const isDiscountApplicable = (cartItem: CartItem, discount: Discount) => {
   return cartItem.quantity >= discount.quantity;
@@ -73,38 +68,4 @@ export const findCartItem = (
   productId: CartItem["product"]["id"]
 ) => {
   return cart.find((cartItem) => cartItem.product.id === productId);
-};
-
-const percentageToRate = (percentage: number) => percentage / 100;
-
-// 쿠폰 적용 총액 계산 함수
-export const calculateCouponAppliedTotal = (
-  cartTotal: CartTotal,
-  coupon: Coupon | null
-): CartTotal => {
-  if (!coupon) return cartTotal;
-
-  const couponAppliedCartTotal = { ...cartTotal };
-
-  switch (coupon.discountType) {
-    case "amount": {
-      couponAppliedCartTotal.totalAfterDiscount -= coupon.discountValue;
-      couponAppliedCartTotal.totalDiscount =
-        couponAppliedCartTotal.totalBeforeDiscount -
-        couponAppliedCartTotal.totalAfterDiscount;
-      break;
-    }
-    case "percentage": {
-      couponAppliedCartTotal.totalAfterDiscount *=
-        1 - percentageToRate(coupon.discountValue);
-      couponAppliedCartTotal.totalDiscount =
-        couponAppliedCartTotal.totalBeforeDiscount -
-        couponAppliedCartTotal.totalAfterDiscount;
-      break;
-    }
-    default:
-      throw new Error("존재하지 않는 discountType 입니다.");
-  }
-
-  return couponAppliedCartTotal;
 };

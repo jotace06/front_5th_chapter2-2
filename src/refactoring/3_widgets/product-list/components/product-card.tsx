@@ -1,13 +1,13 @@
+import { useProduct } from "../../../4_features/product/hooks";
+import { useCart } from "../../../4_features/cart/hooks";
 import { ProductCardProps } from "../types";
 import { AddToCartButton } from "./add-to-cart-button";
 import { DiscountList } from "./discount-list";
 
-export const ProductCard = ({
-  product,
-  remainingStock,
-  addToCart,
-  maxDiscount,
-}: ProductCardProps) => {
+export const ProductCard = ({ product }: ProductCardProps) => {
+  const { remainingStock, maxDiscount } = useProduct(product);
+  const { addToCart } = useCart();
+
   return (
     <div
       data-testid={`product-${product.id}`}

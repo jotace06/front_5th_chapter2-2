@@ -1,8 +1,8 @@
-import { useCartWithCoupon } from "../../../4_features/cart/hooks";
+import { useOrderSummary } from "../../../4_features/order-summary/hooks";
 
 export const OrderSummary = () => {
   const { totalBeforeDiscount, totalAfterDiscount, totalDiscount } =
-    useCartWithCoupon();
+    useOrderSummary();
 
   return (
     <div className="mt-6 bg-white p-4 rounded shadow">
