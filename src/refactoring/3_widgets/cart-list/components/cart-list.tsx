@@ -1,22 +1,15 @@
-import { useCart } from "../../../4_features/cart/hooks";
 import { CartItem } from "./cart-item";
+import { useCart } from "../../../4_features/cart/hooks";
 
 export const CartList = () => {
-  const { cart, updateQuantity, removeFromCart, getAppliedDiscount } =
-    useCart();
+  const { cart } = useCart();
 
   return (
     <>
       <h2 className="text-2xl font-semibold mb-4">장바구니 내역</h2>
       <div className="space-y-2">
-        {cart.map((item) => (
-          <CartItem
-            key={item.product.id}
-            item={item}
-            updateQuantity={updateQuantity}
-            removeFromCart={removeFromCart}
-            appliedDiscount={getAppliedDiscount(item)}
-          />
+        {cart.map((cartItem) => (
+          <CartItem key={cartItem.product.id} cartItem={cartItem} />
         ))}
       </div>
     </>

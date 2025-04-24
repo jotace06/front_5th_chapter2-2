@@ -1,19 +1,31 @@
 import { CartItemProps } from "../types";
 import { QuantityControl } from "./quantity-control";
+import { useCart } from "../../../4_features/cart/hooks";
 
-export const CartItem = ({
-  item,
-  updateQuantity,
-  removeFromCart,
-  appliedDiscount,
-}: CartItemProps) => {
+export const CartItem = ({ cartItem }: CartItemProps) => {
+  const { updateQuantity, removeFromCart, getAppliedDiscount } = useCart();
+
+  const appliedDiscount = getAppliedDiscount(cartItem);
+
+  const handleDecreaseClick = () => {
+    updateQuantity(cartItem.product.id, cartItem.quantity - 1);
+  };
+
+  const handleIncreaseClick = () => {
+    updateQuantity(cartItem.product.id, cartItem.quantity + 1);
+  };
+
+  const handleRemoveClick = () => {
+    removeFromCart(cartItem.product.id);
+  };
+
   return (
     <div className="flex justify-between items-center bg-white p-3 rounded shadow">
       <div>
-        <span className="font-semibold">{item.product.name}</span>
+        <span className="font-semibold">{cartItem.product.name}</span>
         <br />
         <span className="text-sm text-gray-600">
-          {item.product.price.toLocaleString()}원 x {item.quantity}
+          {cartItem.product.price.toLocaleString()}원 x {cartItem.quantity}
           {appliedDiscount > 0 && (
             <span className="text-green-600 ml-1">
               ({(appliedDiscount * 100).toFixed(0)}% 할인 적용)
@@ -22,10 +34,9 @@ export const CartItem = ({
         </span>
       </div>
       <QuantityControl
-        productId={item.product.id}
-        quantity={item.quantity}
-        updateQuantity={updateQuantity}
-        removeFromCart={removeFromCart}
+        onDecreaseClick={handleDecreaseClick}
+        onIncreaseClick={handleIncreaseClick}
+        onRemoveClick={handleRemoveClick}
       />
     </div>
   );

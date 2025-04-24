@@ -45,6 +45,7 @@ export const useCart = () => {
     if (newQuantity <= 0) {
       const updatedCart = actions.removeFromCart(cart, productId);
       setCart(updatedCart);
+      return;
     }
 
     // 재고 초과면 재고만큼 줄임
