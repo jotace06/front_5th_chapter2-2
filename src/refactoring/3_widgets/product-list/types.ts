@@ -9,7 +9,5 @@ export interface DiscountListProps {
 }
 
 export interface AddToCartButtonProps {
-  disabled: boolean;
-  onClick: () => void;
-  remainingStock: number;
+  product: Product;
 }

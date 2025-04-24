@@ -4,7 +4,7 @@ import * as ProductModel from "../../../5_entities/product/lib";
 
 export const useProductEditor = (
   initialProduct: Product,
-  onUpdate: (product: Product) => void
+  updateProduct: (product: Product) => void
 ) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product>(initialProduct);
@@ -32,7 +32,7 @@ export const useProductEditor = (
   };
 
   const handleSaveClick = () => {
-    onUpdate(editingProduct);
+    updateProduct(editingProduct);
     setIsEditing(false);
   };
 

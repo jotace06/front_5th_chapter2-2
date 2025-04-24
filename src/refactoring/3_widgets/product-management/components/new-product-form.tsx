@@ -1,18 +1,11 @@
-import { useState } from "react";
-import { ProductFormData } from "../../../6_shared/types";
 import { NewProductFormProps } from "../types";
+import { useProductForm } from "../hooks/use-product-form";
 
 export const NewProductForm = ({ onSubmit }: NewProductFormProps) => {
-  const [formData, setFormData] = useState<ProductFormData>({
-    name: "",
-    price: 0,
-    stock: 0,
-    discounts: [],
-  });
+  const { formData, handleNameChange, handlePriceChange, handleStockChange } =
+    useProductForm();
 
-  const handleSubmitClick = () => {
-    onSubmit(formData);
-  };
+  const handleSubmitClick = () => onSubmit(formData);
 
   return (
     <div className="bg-white p-4 rounded shadow mb-4">
@@ -28,9 +21,7 @@ export const NewProductForm = ({ onSubmit }: NewProductFormProps) => {
           id="productName"
           type="text"
           value={formData.name}
-          onChange={(e) =>
-            setFormData((prev) => ({ ...prev, name: e.target.value }))
-          }
+          onChange={(e) => handleNameChange(e.target.value)}
           className="w-full p-2 border rounded"
         />
       </div>
@@ -45,12 +36,7 @@ export const NewProductForm = ({ onSubmit }: NewProductFormProps) => {
           id="productPrice"
           type="number"
           value={formData.price}
-          onChange={(e) =>
-            setFormData((prev) => ({
-              ...prev,
-              price: parseInt(e.target.value),
-            }))
-          }
+          onChange={(e) => handlePriceChange(parseInt(e.target.value))}
           className="w-full p-2 border rounded"
         />
       </div>
@@ -65,12 +51,7 @@ export const NewProductForm = ({ onSubmit }: NewProductFormProps) => {
           id="productStock"
           type="number"
           value={formData.stock}
-          onChange={(e) =>
-            setFormData((prev) => ({
-              ...prev,
-              stock: parseInt(e.target.value),
-            }))
-          }
+          onChange={(e) => handleStockChange(parseInt(e.target.value))}
           className="w-full p-2 border rounded"
         />
       </div>

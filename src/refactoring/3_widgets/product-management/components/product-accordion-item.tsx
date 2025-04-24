@@ -5,10 +5,10 @@ import { ProductEditForm } from "./product-edit-form";
 export const ProductAccordionItem: React.FC<ProductAccordionItemProps> = ({
   product,
   index,
-  onUpdate,
+  updateProduct,
 }) => {
   const { isOpen, toggleAccordion } = useProductAccordion();
-  const editor = useProductEditor(product, onUpdate);
+  const editor = useProductEditor(product, updateProduct);
 
   return (
     <div
@@ -30,8 +30,8 @@ export const ProductAccordionItem: React.FC<ProductAccordionItemProps> = ({
             <ProductEditForm
               product={editor.editingProduct}
               onFieldChange={editor.handleProductChange}
-              onAddDiscountClick={editor.handleAddDiscountClick}
-              onRemoveDiscountClick={editor.handleRemoveDiscountClick}
+              addDiscount={editor.handleAddDiscountClick}
+              removeDiscount={editor.handleRemoveDiscountClick}
               onSaveClick={editor.handleSaveClick}
             />
           )}

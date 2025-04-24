@@ -3,14 +3,14 @@ import { Product, Discount, ProductFormData } from "../../6_shared/types";
 export interface ProductAccordionItemProps {
   product: Product;
   index: number;
-  onUpdate: (updatedProduct: Product) => void;
+  updateProduct: (updatedProduct: Product) => void;
 }
 
 export interface ProductEditFormProps {
   product: Product;
   onFieldChange: (field: keyof Product, value: string | number) => void;
-  onAddDiscountClick: (discount: Discount) => void;
-  onRemoveDiscountClick: (index: number) => void;
+  addDiscount: (discount: Discount) => void;
+  removeDiscount: (index: number) => void;
   onSaveClick: () => void;
 }
 
@@ -20,8 +20,8 @@ export interface DiscountListProps {
 
 export interface DiscountEditorProps {
   discounts: Discount[];
-  onAddDiscountClick: (discount: Discount) => void;
-  onRemoveDiscountClick: (index: number) => void;
+  addDiscount: (discount: Discount) => void;
+  removeDiscount: (index: number) => void;
 }
 
 export interface NewProductFormProps {

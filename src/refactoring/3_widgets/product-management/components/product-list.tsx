@@ -12,7 +12,7 @@ export const ProductList = () => {
           key={product.id}
           product={product}
           index={index}
-          onUpdate={updateProduct}
+          updateProduct={updateProduct}
         />
       ))}
     </div>

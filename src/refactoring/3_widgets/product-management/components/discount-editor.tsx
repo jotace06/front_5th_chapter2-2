@@ -1,37 +1,21 @@
-import { useState } from "react";
-
-import { Discount } from "../../../6_shared/types";
 import { DiscountEditorProps } from "../types";
+import { useDiscountEditor } from "../hooks/use-discount-editor";
 
-export const DiscountEditor = ({
+export const DiscountEditor: React.FC<DiscountEditorProps> = ({
   discounts,
-  onAddDiscountClick: onAddDiscount,
-  onRemoveDiscountClick: onRemoveDiscount,
-}: DiscountEditorProps) => {
-  const [newDiscount, setNewDiscount] = useState<Discount>({
-    quantity: 0,
-    rate: 0,
-  });
-
-  const handleDiscountQuantityChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setNewDiscount((prev) => ({
-      ...prev,
-      quantity: parseInt(e.target.value),
-    }));
-  };
-
-  const handleDiscountRateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewDiscount((prev) => ({
-      ...prev,
-      rate: parseInt(e.target.value) / 100,
-    }));
-  };
+  addDiscount,
+  removeDiscount,
+}) => {
+  const {
+    newDiscount,
+    handleDiscountQuantityChange,
+    handleDiscountRateChange,
+    resetDiscount,
+  } = useDiscountEditor();
 
   const handleAddDiscountClick = () => {
-    onAddDiscount(newDiscount);
-    setNewDiscount({ quantity: 0, rate: 0 });
+    addDiscount(newDiscount);
+    resetDiscount();
   };
 
   return (
@@ -43,7 +27,7 @@ export const DiscountEditor = ({
             {discount.quantity}개 이상 구매 시 {discount.rate * 100}% 할인
           </span>
           <button
-            onClick={() => onRemoveDiscount(index)}
+            onClick={() => removeDiscount(index)}
             className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
           >
             삭제
@@ -55,14 +39,16 @@ export const DiscountEditor = ({
           type="number"
           placeholder="수량"
           value={newDiscount.quantity}
-          onChange={handleDiscountQuantityChange}
+          onChange={(e) =>
+            handleDiscountQuantityChange(parseInt(e.target.value))
+          }
           className="w-1/3 p-2 border rounded"
         />
         <input
           type="number"
           placeholder="할인율 (%)"
           value={newDiscount.rate * 100}
-          onChange={handleDiscountRateChange}
+          onChange={(e) => handleDiscountRateChange(parseInt(e.target.value))}
           className="w-1/3 p-2 border rounded"
         />
         <button

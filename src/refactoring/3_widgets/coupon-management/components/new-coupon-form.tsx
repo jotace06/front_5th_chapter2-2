@@ -1,22 +1,19 @@
-import { useState } from "react";
-import { CouponFormData, NewCouponFormProps } from "../types";
+import { NewCouponFormProps } from "../types";
+import { useCouponForm } from "../hooks/use-coupon-form";
 
 export const NewCouponForm: React.FC<NewCouponFormProps> = ({ onSubmit }) => {
-  const [formData, setFormData] = useState<CouponFormData>({
-    name: "",
-    code: "",
-    discountType: "percentage",
-    discountValue: 0,
-  });
+  const {
+    formData,
+    handleNameChange,
+    handleCodeChange,
+    handleDiscountTypeChange,
+    handleDiscountValueChange,
+    resetForm,
+  } = useCouponForm();
 
   const handleSubmitClick = () => {
     onSubmit(formData);
-    setFormData({
-      name: "",
-      code: "",
-      discountType: "percentage",
-      discountValue: 0,
-    });
+    resetForm();
   };
 
   return (
@@ -25,29 +22,20 @@ export const NewCouponForm: React.FC<NewCouponFormProps> = ({ onSubmit }) => {
         type="text"
         placeholder="쿠폰 이름"
         value={formData.name}
-        onChange={(e) =>
-          setFormData((prev) => ({ ...prev, name: e.target.value }))
-        }
+        onChange={handleNameChange}
         className="w-full p-2 border rounded"
       />
       <input
         type="text"
         placeholder="쿠폰 코드"
         value={formData.code}
-        onChange={(e) =>
-          setFormData((prev) => ({ ...prev, code: e.target.value }))
-        }
+        onChange={handleCodeChange}
         className="w-full p-2 border rounded"
       />
       <div className="flex gap-2">
         <select
           value={formData.discountType}
-          onChange={(e) =>
-            setFormData((prev) => ({
-              ...prev,
-              discountType: e.target.value as "amount" | "percentage",
-            }))
-          }
+          onChange={handleDiscountTypeChange}
           className="w-full p-2 border rounded"
         >
           <option value="amount">금액(원)</option>
@@ -57,12 +45,7 @@ export const NewCouponForm: React.FC<NewCouponFormProps> = ({ onSubmit }) => {
           type="number"
           placeholder="할인 값"
           value={formData.discountValue}
-          onChange={(e) =>
-            setFormData((prev) => ({
-              ...prev,
-              discountValue: parseInt(e.target.value),
-            }))
-          }
+          onChange={handleDiscountValueChange}
           className="w-full p-2 border rounded"
         />
       </div>

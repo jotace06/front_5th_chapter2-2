@@ -4,8 +4,8 @@ import { DiscountEditor } from "./discount-editor";
 export const ProductEditForm: React.FC<ProductEditFormProps> = ({
   product,
   onFieldChange,
-  onAddDiscountClick,
-  onRemoveDiscountClick,
+  addDiscount,
+  removeDiscount,
   onSaveClick,
 }) => {
   return (
@@ -40,8 +40,8 @@ export const ProductEditForm: React.FC<ProductEditFormProps> = ({
       <div className="mb-4">
         <DiscountEditor
           discounts={product.discounts}
-          onAddDiscountClick={onAddDiscountClick}
-          onRemoveDiscountClick={onRemoveDiscountClick}
+          addDiscount={addDiscount}
+          removeDiscount={removeDiscount}
         />
       </div>
       <button

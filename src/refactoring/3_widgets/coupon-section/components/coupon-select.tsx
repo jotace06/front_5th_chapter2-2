@@ -1,10 +1,9 @@
-import { CouponSelectProps } from "../types";
+import { useCoupon, useCoupons } from "../../../4_features/coupon/hooks";
 
-export const CouponSelect = ({
-  coupons,
-  selectedCoupon,
-  applyCoupon,
-}: CouponSelectProps) => {
+export const CouponSelect = () => {
+  const { coupons } = useCoupons(); // 쿠폰 목록
+  const { selectedCoupon, applyCoupon } = useCoupon(); // 선택된 쿠폰, 쿠폰 적용
+
   const handleCouponChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedIndex = parseInt(e.target.value);
     applyCoupon(coupons[selectedIndex]);
