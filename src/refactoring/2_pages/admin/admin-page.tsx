@@ -1,10 +1,14 @@
-import { FC } from "react";
+import { ProductManagementPanel } from "../../3_widgets/product-management/components";
 
-export const AdminPage: FC = () => {
+export const AdminPage = () => {
   return (
-    <div>
-      <h2>관리자 페이지</h2>
-      <p>관리자 페이지 내용이 여기에 표시됩니다.</p>
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-6">관리자 페이지</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <ProductManagementPanel title="상품 관리" />
+        </div>
+      </div>
     </div>
   );
 };

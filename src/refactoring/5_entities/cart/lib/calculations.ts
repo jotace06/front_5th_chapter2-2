@@ -62,10 +62,3 @@ export const calculateCartTotal = (cart: CartItem[]): CartTotal => {
     }
   );
 };
-
-export const findCartItem = (
-  cart: CartItem[],
-  productId: CartItem["product"]["id"]
-) => {
-  return cart.find((cartItem) => cartItem.product.id === productId);
-};

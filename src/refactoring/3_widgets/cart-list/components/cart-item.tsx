@@ -8,15 +8,15 @@ export const CartItem = ({ cartItem }: CartItemProps) => {
   const appliedDiscount = getAppliedDiscount(cartItem);
 
   const handleDecreaseClick = () => {
-    updateQuantity(cartItem.product.id, cartItem.quantity - 1);
+    updateQuantity(cartItem.product, cartItem.quantity - 1);
   };
 
   const handleIncreaseClick = () => {
-    updateQuantity(cartItem.product.id, cartItem.quantity + 1);
+    updateQuantity(cartItem.product, cartItem.quantity + 1);
   };
 
   const handleRemoveClick = () => {
-    removeFromCart(cartItem.product.id);
+    removeFromCart(cartItem.product);
   };
 
   return (

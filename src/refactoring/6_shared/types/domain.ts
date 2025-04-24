@@ -28,3 +28,5 @@ export interface Coupon {
   discountType: "amount" | "percentage";
   discountValue: number;
 }
+
+export interface ProductFormData extends Omit<Product, "id"> {}

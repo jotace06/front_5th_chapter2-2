@@ -1,7 +1,7 @@
 import { atom } from "jotai";
 
 import { CartItem } from "../../../6_shared/types/domain";
-import { calculations } from "../lib";
+import { calculateCartTotal } from "../lib";
 
 // 장바구니 아이템 목록
 export const cartAtom = atom<CartItem[]>([]);
@@ -10,7 +10,7 @@ export const cartAtom = atom<CartItem[]>([]);
 export const cartTotalAtom = atom((get) => {
   const cart = get(cartAtom);
 
-  return calculations.calculateCartTotal(cart);
+  return calculateCartTotal(cart);
 });
 
 // 장바구니 아이템 조회 함수

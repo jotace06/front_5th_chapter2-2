@@ -1,7 +1,7 @@
 import { useAtom, useAtomValue } from "jotai";
 
 import { cartAtom, cartTotalAtom } from "../../../5_entities/cart/model";
-import { actions, calculations } from "../../../5_entities/cart/lib";
+import * as CartModel from "../../../5_entities/cart/lib";
 import { Product } from "../../../6_shared/types";
 
 export const useCart = () => {
@@ -13,11 +13,11 @@ export const useCart = () => {
     if (product.stock <= 0) return;
 
     // 기존 상품 조회
-    const existingItem = calculations.findCartItem(cart, product.id);
+    const existingItem = CartModel.findCartItem(cart, product.id);
 
     if (existingItem) {
       // 기존 상품이면 수량 증가
-      const updatedCart = actions.updateCartItemQuantity(
+      const updatedCart = CartModel.updateCartItemQuantity(
         cart,
         product.id,
         existingItem.quantity + 1
@@ -25,34 +25,34 @@ export const useCart = () => {
       setCart(updatedCart);
     } else {
       // 새 상품 추가
-      const updatedCart = actions.addToCart(cart, product);
+      const updatedCart = CartModel.addToCart(cart, product);
       setCart(updatedCart);
     }
   };
 
-  const removeFromCart = (productId: string) => {
-    const updatedCart = actions.removeFromCart(cart, productId);
+  const removeFromCart = (product: Product) => {
+    const updatedCart = CartModel.removeFromCart(cart, product.id);
     setCart(updatedCart);
   };
 
-  const updateQuantity = (productId: string, newQuantity: number) => {
-    const existingItem = calculations.findCartItem(cart, productId);
+  const updateQuantity = (product: Product, newQuantity: number) => {
+    const existingItem = CartModel.findCartItem(cart, product.id);
 
     // 존재하지 않는 상품이면 원래 상태 반환
     if (!existingItem) return;
 
     // 수량이 0 이하면 상품 제거
     if (newQuantity <= 0) {
-      const updatedCart = actions.removeFromCart(cart, productId);
+      const updatedCart = CartModel.removeFromCart(cart, product.id);
       setCart(updatedCart);
       return;
     }
 
     // 재고 초과면 재고만큼 줄임
-    const updatedCart = actions.updateCartItemQuantity(
+    const updatedCart = CartModel.updateCartItemQuantity(
       cart,
-      productId,
-      Math.min(newQuantity, existingItem.product.stock)
+      product.id,
+      Math.min(newQuantity, product.stock)
     );
     setCart(updatedCart);
   };
@@ -63,6 +63,6 @@ export const useCart = () => {
     addToCart,
     removeFromCart,
     updateQuantity,
-    getAppliedDiscount: calculations.calculateMaxApplicableDiscount,
+    getAppliedDiscount: CartModel.calculateMaxApplicableDiscount,
   };
 };

@@ -30,3 +30,10 @@ export const updateCartItemQuantity = (
     return cartItem;
   });
 };
+
+export const findCartItem = (
+  cart: CartItem[],
+  productId: CartItem["product"]["id"]
+) => {
+  return cart.find((cartItem) => cartItem.product.id === productId);
+};
