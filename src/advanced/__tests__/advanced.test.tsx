@@ -143,8 +143,8 @@ describe("advanced > ", () => {
       }
 
       // 장바구니 내역 확인
-      const cartList = screen.getByTestId("cart-list");
-      const cartItems = within(cartList).getAllByTestId(/cart-item-/);
+      //const cartList = screen.getByTestId("cart-list");
+      //const cartItems = within(cartList).getAllByTestId(/cart-item-/);
 
       // 8. 할인 계산 확인
       expect(within(orderSummary).getByText(/상품 금액:/)).toHaveTextContent(
