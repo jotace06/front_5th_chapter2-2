@@ -13,6 +13,7 @@ export const ProductEditForm: React.FC<ProductEditFormProps> = ({
       <div className="mb-4">
         <label className="block mb-1">상품명: </label>
         <input
+          data-testid="edit-product-name-input"
           type="text"
           value={product.name}
           onChange={(e) => onFieldChange("name", e.target.value)}
@@ -22,6 +23,7 @@ export const ProductEditForm: React.FC<ProductEditFormProps> = ({
       <div className="mb-4">
         <label className="block mb-1">가격: </label>
         <input
+          data-testid="edit-product-price-input"
           type="number"
           value={product.price}
           onChange={(e) => onFieldChange("price", parseInt(e.target.value))}
@@ -31,6 +33,7 @@ export const ProductEditForm: React.FC<ProductEditFormProps> = ({
       <div className="mb-4">
         <label className="block mb-1">재고: </label>
         <input
+          data-testid="edit-product-stock-input"
           type="number"
           value={product.stock}
           onChange={(e) => onFieldChange("stock", parseInt(e.target.value))}

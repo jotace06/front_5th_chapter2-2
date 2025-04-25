@@ -20,7 +20,10 @@ export const CartItem = ({ cartItem }: CartItemProps) => {
   };
 
   return (
-    <div className="flex justify-between items-center bg-white p-3 rounded shadow">
+    <div
+      className="flex justify-between items-center bg-white p-3 rounded shadow"
+      data-testid={`cart-item-${cartItem.product.id}`}
+    >
       <div>
         <span className="font-semibold">{cartItem.product.name}</span>
         <br />

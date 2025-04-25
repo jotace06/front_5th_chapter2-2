@@ -14,6 +14,7 @@ export const CouponSelect = () => {
       <select
         onChange={handleCouponChange}
         className="w-full p-2 border rounded mb-2"
+        data-testid="coupon-select"
       >
         <option value="">쿠폰 선택</option>
         {coupons.map((coupon, index) => (

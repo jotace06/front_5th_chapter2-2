@@ -14,6 +14,7 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
 
   return (
     <button
+      data-testid={`add-to-cart-${product.id}`}
       onClick={handleAddToCartClick}
       className={`w-full px-3 py-1 rounded ${
         remainingStock > 0

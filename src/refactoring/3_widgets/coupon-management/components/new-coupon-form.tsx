@@ -19,6 +19,7 @@ export const NewCouponForm: React.FC<NewCouponFormProps> = ({ onSubmit }) => {
   return (
     <div className="space-y-2 mb-4">
       <input
+        data-testid="coupon-name-input"
         type="text"
         placeholder="쿠폰 이름"
         value={formData.name}
@@ -26,6 +27,7 @@ export const NewCouponForm: React.FC<NewCouponFormProps> = ({ onSubmit }) => {
         className="w-full p-2 border rounded"
       />
       <input
+        data-testid="coupon-code-input"
         type="text"
         placeholder="쿠폰 코드"
         value={formData.code}
@@ -34,6 +36,7 @@ export const NewCouponForm: React.FC<NewCouponFormProps> = ({ onSubmit }) => {
       />
       <div className="flex gap-2">
         <select
+          data-testid="coupon-type-select"
           value={formData.discountType}
           onChange={handleDiscountTypeChange}
           className="w-full p-2 border rounded"
@@ -42,6 +45,7 @@ export const NewCouponForm: React.FC<NewCouponFormProps> = ({ onSubmit }) => {
           <option value="percentage">할인율(%)</option>
         </select>
         <input
+          data-testid="coupon-value-input"
           type="number"
           placeholder="할인 값"
           value={formData.discountValue}

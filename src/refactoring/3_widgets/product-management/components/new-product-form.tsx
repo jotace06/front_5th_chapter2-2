@@ -18,6 +18,7 @@ export const NewProductForm = ({ onSubmit }: NewProductFormProps) => {
           상품명
         </label>
         <input
+          data-testid="product-name-input"
           id="productName"
           type="text"
           value={formData.name}
@@ -33,6 +34,7 @@ export const NewProductForm = ({ onSubmit }: NewProductFormProps) => {
           가격
         </label>
         <input
+          data-testid="product-price-input"
           id="productPrice"
           type="number"
           value={formData.price}
@@ -48,6 +50,7 @@ export const NewProductForm = ({ onSubmit }: NewProductFormProps) => {
           재고
         </label>
         <input
+          data-testid="product-stock-input"
           id="productStock"
           type="number"
           value={formData.stock}
