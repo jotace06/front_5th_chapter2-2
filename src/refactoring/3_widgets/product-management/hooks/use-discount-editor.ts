@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Discount } from "../../../6_shared/types";
+import { Discount } from "../../../../types";
 
 export const useDiscountEditor = () => {
   const [newDiscount, setNewDiscount] = useState<Discount>({
@@ -7,17 +7,19 @@ export const useDiscountEditor = () => {
     rate: 0,
   });
 
-  const handleDiscountQuantityChange = (value: number) => {
+  const handleDiscountQuantityChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setNewDiscount((prev) => ({
       ...prev,
-      quantity: value,
+      quantity: parseInt(e.target.value),
     }));
   };
 
-  const handleDiscountRateChange = (value: number) => {
+  const handleDiscountRateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewDiscount((prev) => ({
       ...prev,
-      rate: value / 100,
+      rate: parseInt(e.target.value) / 100,
     }));
   };
 

@@ -1,4 +1,3 @@
-// _widgets/product-list/components/discount-list.tsx
 import { DiscountListProps } from "../types";
 
 export const DiscountList = ({ discounts }: DiscountListProps) => {

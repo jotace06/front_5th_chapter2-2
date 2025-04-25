@@ -39,16 +39,14 @@ export const DiscountEditor: React.FC<DiscountEditorProps> = ({
           type="number"
           placeholder="수량"
           value={newDiscount.quantity}
-          onChange={(e) =>
-            handleDiscountQuantityChange(parseInt(e.target.value))
-          }
+          onChange={handleDiscountQuantityChange}
           className="w-1/3 p-2 border rounded"
         />
         <input
           type="number"
           placeholder="할인율 (%)"
           value={newDiscount.rate * 100}
-          onChange={(e) => handleDiscountRateChange(parseInt(e.target.value))}
+          onChange={handleDiscountRateChange}
           className="w-1/3 p-2 border rounded"
         />
         <button

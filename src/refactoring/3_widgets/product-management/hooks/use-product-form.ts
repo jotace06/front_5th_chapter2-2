@@ -11,16 +11,25 @@ const initialFormData: ProductFormData = {
 export const useProductForm = () => {
   const [formData, setFormData] = useState<ProductFormData>(initialFormData);
 
-  const handleNameChange = (value: string) => {
-    setFormData((prev) => ({ ...prev, name: value }));
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => ({
+      ...prev,
+      name: e.target.value,
+    }));
   };
 
-  const handlePriceChange = (value: number) => {
-    setFormData((prev) => ({ ...prev, price: value }));
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => ({
+      ...prev,
+      price: parseInt(e.target.value),
+    }));
   };
 
-  const handleStockChange = (value: number) => {
-    setFormData((prev) => ({ ...prev, stock: value }));
+  const handleStockChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => ({
+      ...prev,
+      stock: parseInt(e.target.value),
+    }));
   };
 
   const resetForm = () => {

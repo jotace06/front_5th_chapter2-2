@@ -22,7 +22,7 @@ export const NewProductForm = ({ onSubmit }: NewProductFormProps) => {
           id="productName"
           type="text"
           value={formData.name}
-          onChange={(e) => handleNameChange(e.target.value)}
+          onChange={handleNameChange}
           className="w-full p-2 border rounded"
         />
       </div>
@@ -38,7 +38,7 @@ export const NewProductForm = ({ onSubmit }: NewProductFormProps) => {
           id="productPrice"
           type="number"
           value={formData.price}
-          onChange={(e) => handlePriceChange(parseInt(e.target.value))}
+          onChange={handlePriceChange}
           className="w-full p-2 border rounded"
         />
       </div>
@@ -54,7 +54,7 @@ export const NewProductForm = ({ onSubmit }: NewProductFormProps) => {
           id="productStock"
           type="number"
           value={formData.stock}
-          onChange={(e) => handleStockChange(parseInt(e.target.value))}
+          onChange={handleStockChange}
           className="w-full p-2 border rounded"
         />
       </div>
